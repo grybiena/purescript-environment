@@ -33,7 +33,9 @@
               overlays = with inputs; gen-overlays { inherit pkgs system; } overlays;
             };
 
-            package = import derive-package (purs-nix-overlay // { npmlock2nix = import npmlock2nix { inherit pkgs}; } ); 
+            package = import derive-package (purs-nix-overlay // {
+              npmlock2nix = import npmlock2nix { inherit pkgs; };
+            }); 
 
             ps = purs-nix-overlay.purs { inherit (package) dependencies; };
 
