@@ -12,11 +12,49 @@
   };
   outputs = inputs:
     with inputs;
-    { inherit nixpkgs flake-utils ps-tools purs-nix npmlock2nix;
+    rec {
+      inherit nixpkgs flake-utils ps-tools purs-nix npmlock2nix;
       gen-overlays = {
         __functor = _: { pkgs, system }: overlays:
           let overlayInput = name: input: { "${name}" = input.packages.${system}.default; };
           in [ (self: super: pkgs.lib.attrsets.concatMapAttrs overlayInput overlays) ];
+      };
+      build-package = {
+        __functor = _: { system, name, overlays }:
+          let
+            pkgs = import nixpkgs {
+              inherit system;
+              overlays = [ ];
+              config.allowBroken = true;
+            };
+
+            purs-nix-overlay = purs-nix {
+              inherit system; 
+              overlays = with inputs; env.gen-overlays { inherit pkgs system; } overlays;
+            };
+
+            package = import package purs-nix; 
+
+            ps = purs-nix-overlay.purs { inherit (package) dependencies; };
+
+          in 
+             { packages.default =
+                 purs-nix-overlay.build
+                   { inherit name; 
+                     info = package;
+                   };
+               packages.output = ps.output {};
+               devShells.default = 
+                 pkgs.mkShell
+                   { packages = with pkgs; [
+                       nodejs
+                       (ps.command {}) 
+                       ps-tools.legacyPackages.${system}.for-0_15.purescript-language-server
+                       purs-nix-overlay.esbuild
+                       purs-nix-overlay.purescript
+                     ];
+                   };
+             };
       };
     };
 }
