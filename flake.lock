@@ -223,16 +223,12 @@
     },
     "mycelial-socket": {
       "inputs": {
-        "crypto-secp256k1": [
-          "crypto-secp256k1"
-        ],
         "flake-utils": [
           "flake-utils"
         ],
         "nixpkgs": [
           "nixpkgs"
         ],
-        "npmlock2nix": "npmlock2nix",
         "ps-tools": [
           "ps-tools"
         ],
@@ -241,32 +237,28 @@
         ]
       },
       "locked": {
-        "lastModified": 1685963176,
-        "narHash": "sha256-SrILW6cunC8F5Fh4T+/YZiR5f0K38JCvErWXksef09c=",
-        "ref": "grybiena",
-        "rev": "ddf3df55944392ba552d82e3c995a397bab27217",
-        "revCount": 6,
+        "lastModified": 1686168816,
+        "narHash": "sha256-z49VKEbagz1zxdp6f04BNUf3uBi/6ivOsG7qS6nEgjA=",
+        "ref": "overlays",
+        "rev": "ed2d6c2a4f576e2e9468050ee7f9b54d3fb71796",
+        "revCount": 7,
         "type": "git",
         "url": "ssh://git@github.com/grybiena/mycelial-socket"
       },
       "original": {
-        "ref": "grybiena",
+        "ref": "overlays",
         "type": "git",
         "url": "ssh://git@github.com/grybiena/mycelial-socket"
       }
     },
     "mycelial-space": {
       "inputs": {
-        "crypto-secp256k1": [
-          "crypto-secp256k1"
-        ],
         "flake-utils": [
           "flake-utils"
         ],
         "nixpkgs": [
           "nixpkgs"
         ],
-        "npmlock2nix": "npmlock2nix_2",
         "ps-tools": [
           "ps-tools"
         ],
@@ -275,16 +267,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1686146038,
-        "narHash": "sha256-WQi/9R91ah+NREC4q2kUw16nWDQc6H3BRmhDnGdw2yE=",
-        "ref": "grybiena",
-        "rev": "60ca419b406eeaa73f7b390ec690e40f928da3ae",
-        "revCount": 7,
+        "lastModified": 1686168455,
+        "narHash": "sha256-CbUziG5lAK3wSseWamytgf6lxJYInC6iM6MdgbjLYzw=",
+        "ref": "overlays",
+        "rev": "5bc55c0ff18f143bae88a9474350ebcbd8f4beb4",
+        "revCount": 9,
         "type": "git",
         "url": "ssh://git@github.com/grybiena/mycelial-space"
       },
       "original": {
-        "ref": "grybiena",
+        "ref": "overlays",
         "type": "git",
         "url": "ssh://git@github.com/grybiena/mycelial-space"
       }
@@ -309,11 +301,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1685677062,
-        "narHash": "sha256-zoHF7+HNwNwne2XEomphbdc4Y8tdWT16EUxUTXpOKpQ=",
+        "lastModified": 1686089707,
+        "narHash": "sha256-LTNlJcru2qJ0XhlhG9Acp5KyjB774Pza3tRH0pKIb3o=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "95be94370d09f97f6af6a1df1eb9649b5260724e",
+        "rev": "af21c31b2a1ec5d361ed8050edd0303c31306397",
         "type": "github"
       },
       "original": {
@@ -416,40 +408,6 @@
         "type": "github"
       }
     },
-    "npmlock2nix_2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1685718026,
-        "narHash": "sha256-g5BOTUbm4wsaTQJqUE0HsLP6tv5KFm2zWjBxqXlfz/0=",
-        "owner": "grybiena",
-        "repo": "npmlock2nix",
-        "rev": "a9f869c1d5e85e0e62de32caa9d5eb86e6028418",
-        "type": "github"
-      },
-      "original": {
-        "owner": "grybiena",
-        "ref": "grybiena",
-        "repo": "npmlock2nix",
-        "type": "github"
-      }
-    },
-    "npmlock2nix_3": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1685718026,
-        "narHash": "sha256-g5BOTUbm4wsaTQJqUE0HsLP6tv5KFm2zWjBxqXlfz/0=",
-        "owner": "grybiena",
-        "repo": "npmlock2nix",
-        "rev": "a9f869c1d5e85e0e62de32caa9d5eb86e6028418",
-        "type": "github"
-      },
-      "original": {
-        "owner": "grybiena",
-        "ref": "grybiena",
-        "repo": "npmlock2nix",
-        "type": "github"
-      }
-    },
     "parsec": {
       "locked": {
         "lastModified": 1635533376,
@@ -520,7 +478,7 @@
         "mycelial-socket": "mycelial-socket",
         "mycelial-space": "mycelial-space",
         "nixpkgs": "nixpkgs",
-        "npmlock2nix": "npmlock2nix_3",
+        "npmlock2nix": "npmlock2nix",
         "ps-tools": [
           "purs-nix",
           "ps-tools"

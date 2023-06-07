@@ -18,6 +18,7 @@
         ps-tools.follows    = "ps-tools";
         purs-nix.follows    = "purs-nix";
         npmlock2nix.follows = "npmlock2nix";
+
       };
     };
  
@@ -34,24 +35,22 @@
     };
 
     mycelial-socket = {
-      url = "git+ssh://git@github.com/grybiena/mycelial-socket?ref=grybiena";
+      url = "git+ssh://git@github.com/grybiena/mycelial-socket?ref=overlays";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows     = "nixpkgs";
         ps-tools.follows    = "ps-tools";
         purs-nix.follows    = "purs-nix";
-        crypto-secp256k1.follows = "crypto-secp256k1";
       };
     };
 
     mycelial-space = {
-      url = "git+ssh://git@github.com/grybiena/mycelial-space?ref=grybiena";
+      url = "git+ssh://git@github.com/grybiena/mycelial-space?ref=overlays";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows     = "nixpkgs";
         ps-tools.follows    = "ps-tools";
         purs-nix.follows    = "purs-nix";
-        crypto-secp256k1.follows = "crypto-secp256k1";
       };
     };
 
