@@ -153,21 +153,6 @@
         "type": "github"
       }
     },
-    "get-flake_2": {
-      "locked": {
-        "lastModified": 1673819588,
-        "narHash": "sha256-gRtwKAlu4htvS6dxyZnW3n+vMS1acqnMGVHqxUdETeY=",
-        "owner": "ursi",
-        "repo": "get-flake",
-        "rev": "e0917b6f564aa5acefb1484b5baf76da21746c3c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ursi",
-        "repo": "get-flake",
-        "type": "github"
-      }
-    },
     "make-shell": {
       "locked": {
         "lastModified": 1634940815,
@@ -367,7 +352,7 @@
     "purs-nix": {
       "inputs": {
         "docs-search": "docs-search",
-        "get-flake": "get-flake_2",
+        "get-flake": "get-flake",
         "make-shell": "make-shell",
         "nixpkgs": "nixpkgs_2",
         "parsec": "parsec",
@@ -393,7 +378,6 @@
       "inputs": {
         "crypto-secp256k1": "crypto-secp256k1",
         "flake-utils": "flake-utils",
-        "get-flake": "get-flake",
         "nixpkgs": "nixpkgs",
         "npmlock2nix": "npmlock2nix",
         "ps-tools": [

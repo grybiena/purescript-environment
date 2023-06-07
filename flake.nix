@@ -1,7 +1,6 @@
 {
   description = "purescript-environment";
   inputs = {
-    get-flake.url = "github:ursi/get-flake";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     ps-tools.follows = "purs-nix/ps-tools";
@@ -23,15 +22,17 @@
     };
   };
   outputs = inputs@{ flake-utils, purs-nix, ...} :
-    { __functor = _: { system }:
-        purs-nix { inherit system;
-                   overlays = with inputs;
-                   [ (self: super:
-                       { crypto-secp256k1 = crypto-secp256k1.packages.${system}.default;
-                       }
-                     )
-                     ];
-                 };
+    { __functor = _: { pkgs, system }:
+        purs-nix {
+          inherit system;
+          overlays = let otherInputs = [ "nixpkgs" "flake-utils" "ps-tools" "purs-nix" "npmlock2nix" ];
+                         overlayInput = name: input:
+                           if pkgs.lib.lists.any (other: other == name)
+                             then {}
+                             else { "${name}" = input.packages.${system}.default; };
+                     in [ (self: super: pkgs.lib.attrsetsconcatMapAttrs overlayInput inputs) ];
+       };
     };
 }
+
 
