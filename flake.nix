@@ -20,7 +20,7 @@
           in [ (self: super: pkgs.lib.attrsets.concatMapAttrs overlayInput overlays) ];
       };
       build-package = {
-        __functor = _: { system, name, overlays }:
+        __functor = _: { system, name, overlays, derive-package }:
           let
             pkgs = import nixpkgs {
               inherit system;
@@ -33,7 +33,7 @@
               overlays = with inputs; env.gen-overlays { inherit pkgs system; } overlays;
             };
 
-            package = import package purs-nix; 
+            package = import derive-package purs-nix; 
 
             ps = purs-nix-overlay.purs { inherit (package) dependencies; };
 
