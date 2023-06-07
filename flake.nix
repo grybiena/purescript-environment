@@ -30,7 +30,7 @@
 
             purs-nix-overlay = purs-nix {
               inherit system; 
-              overlays = with inputs; env.gen-overlays { inherit pkgs system; } overlays;
+              overlays = with inputs; gen-overlays { inherit pkgs system; } overlays;
             };
 
             package = import derive-package purs-nix-overlay; 
