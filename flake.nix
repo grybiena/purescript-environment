@@ -19,15 +19,9 @@
           let overlayInput = name: input: { "${name}" = input.packages.${system}.default; };
           in [ (self: super: pkgs.lib.attrsets.concatMapAttrs overlayInput overlays) ];
       };
-      build-package = {
-        __functor = _: { system, name, src, overlays, derive-package }:
+      build-with-pkgs = {
+        __functor = _: { pkgs, system, name, src, overlays, derive-package }:
           let
-            pkgs = import nixpkgs {
-              inherit system;
-              overlays = [ ];
-              config.allowBroken = true;
-            };
-
             purs-nix-overlay = purs-nix {
               inherit system; 
               overlays = with inputs; gen-overlays { inherit pkgs system; } overlays;
@@ -58,6 +52,16 @@
                      ];
                    };
              };
+      };
+      build-package = {
+        __functor = _: { system, name, src, overlays, derive-package }:
+          let
+            pkgs = import nixpkgs {
+              inherit system;
+              overlays = [ ];
+              config.allowBroken = true;
+            };
+          in build-with-pkgs { inherit pkgs system name src overlays derive-package; }; 
       };
     };
 }
