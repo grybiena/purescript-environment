@@ -1,5 +1,38 @@
 {
   "nodes": {
+    "crypto-secp256k1": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "npmlock2nix": [
+          "npmlock2nix"
+        ],
+        "ps-tools": [
+          "ps-tools"
+        ],
+        "purs-nix": [
+          "purs-nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1685919936,
+        "narHash": "sha256-oDvG9Ux12Vqc/OJLSB3JR77ltgrQOEGgcBaYjZNZf3Y=",
+        "ref": "grybiena",
+        "rev": "5ed5a24326710fb09bbcecf2a3885ebc8fd31721",
+        "revCount": 3,
+        "type": "git",
+        "url": "ssh://git@github.com/grybiena/crypto-secp256k1"
+      },
+      "original": {
+        "ref": "grybiena",
+        "type": "git",
+        "url": "ssh://git@github.com/grybiena/crypto-secp256k1"
+      }
+    },
     "deadnix": {
       "inputs": {
         "fenix": "fenix",
@@ -358,6 +391,7 @@
     },
     "root": {
       "inputs": {
+        "crypto-secp256k1": "crypto-secp256k1",
         "flake-utils": "flake-utils",
         "get-flake": "get-flake",
         "nixpkgs": "nixpkgs",

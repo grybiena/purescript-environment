@@ -10,10 +10,25 @@
       { flake = false;
         url = "github:grybiena/npmlock2nix?ref=grybiena";
       };
+
+    crypto-secp256k1 = {
+      url = "git+ssh://git@github.com/grybiena/crypto-secp256k1?ref=grybiena";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows     = "nixpkgs";
+        ps-tools.follows    = "ps-tools";
+        purs-nix.follows    = "purs-nix";
+        npmlock2nix.follows = "npmlock2nix";
+      };
+    };
   };
-  outputs = { flake-utils, ps-tools, ...} :
-    flake-utils.lib.eachDefaultSystem (system: {
-      packages.default = ps-tools.legacyPackages.${system}.purescript;
-    });
+  outputs = inputs@{ flake-utils, purs-nix, ...} :
+    { __functor = _: { system }:
+        purs-nix { inherit system;
+                   overlays = with inputs;
+                     [ crypto-secp256k1 
+                     ];
+                 };
+    };
 }
 
