@@ -26,7 +26,10 @@
     { __functor = _: { system }:
         purs-nix { inherit system;
                    overlays = with inputs;
-                     [ crypto-secp256k1.packages.${system}.default.overlay 
+                   [ (self: super:
+                       { crypto-secp256k1 = crypto-secp256k1.packages.${system}.default;
+                       }
+                     )
                      ];
                  };
     };
