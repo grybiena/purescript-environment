@@ -20,6 +20,52 @@
         npmlock2nix.follows = "npmlock2nix";
       };
     };
+ 
+    mycelial-fibration = {
+      url = "git+ssh://git@github.com/grybiena/mycelial-fibration?ref=grybiena";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows     = "nixpkgs";
+        ps-tools.follows    = "ps-tools";
+        purs-nix.follows    = "purs-nix";
+        npmlock2nix.follows = "npmlock2nix";
+        crypto-secp256k1.follows = "crypto-secp256k1";
+      };
+    };
+
+    mycelial-socket = {
+      url = "git+ssh://git@github.com/grybiena/mycelial-socket?ref=grybiena";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows     = "nixpkgs";
+        ps-tools.follows    = "ps-tools";
+        purs-nix.follows    = "purs-nix";
+        crypto-secp256k1.follows = "crypto-secp256k1";
+      };
+    };
+
+    mycelial-space = {
+      url = "git+ssh://git@github.com/grybiena/mycelial-space?ref=grybiena";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows     = "nixpkgs";
+        ps-tools.follows    = "ps-tools";
+        purs-nix.follows    = "purs-nix";
+        crypto-secp256k1.follows = "crypto-secp256k1";
+      };
+    };
+
+    web-rtc = {
+      url = "git+ssh://git@github.com/grybiena/web-rtc?ref=grybiena";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows     = "nixpkgs";
+        ps-tools.follows    = "ps-tools";
+        purs-nix.follows    = "purs-nix";
+      };
+    };
+
+
   };
   outputs = inputs@{ flake-utils, purs-nix, ...} :
     { __functor = _: { pkgs, system }:
