@@ -77,6 +77,11 @@
                              else { "${name}" = input.packages.${system}.default; };
                      in [ (self: super: pkgs.lib.attrsets.concatMapAttrs overlayInput inputs) ];
        };
+      nixpkgs = inputs.nixpkgs;
+      flake-utils = inputs.flake-utils;
+      ps-tools = inputs.ps-tools;
+      purs-nix = inputs.purs-nix;
+      npmlock2nix = inputs.npmlock2nix;
     };
 }
 
