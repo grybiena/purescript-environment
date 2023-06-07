@@ -20,7 +20,7 @@
           in [ (self: super: pkgs.lib.attrsets.concatMapAttrs overlayInput overlays) ];
       };
       build-with-pkgs = {
-        __functor = _: { pkgs, system, name, src, overlays, derive-package }:
+        __functor = _: { pkgs, shell, system, name, src, overlays, derive-package }:
           let
             purs-nix-overlay = purs-nix {
               inherit system; 
@@ -41,16 +41,7 @@
                      info = package;
                    };
                packages.output = ps.output {};
-               devShells.default = 
-                 pkgs.mkShell
-                   { packages = with pkgs; [
-                       nodejs
-                       (ps.command {}) 
-                       ps-tools.legacyPackages.${system}.for-0_15.purescript-language-server
-                       purs-nix-overlay.esbuild
-                       purs-nix-overlay.purescript
-                     ];
-                   };
+               devShells.default = shell; 
              };
       };
       build-package = {
@@ -61,6 +52,15 @@
               overlays = [ ];
               config.allowBroken = true;
             };
+            shell = pkgs.mkShell
+              { packages = with pkgs; [
+                  nodejs
+                  (ps.command {}) 
+                  ps-tools.legacyPackages.${system}.for-0_15.purescript-language-server
+                  purs-nix-overlay.esbuild
+                  purs-nix-overlay.purescript
+                ];
+              };
           in build-with-pkgs { inherit pkgs system name src overlays derive-package; }; 
       };
     };
