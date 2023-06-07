@@ -30,7 +30,7 @@
                            if pkgs.lib.lists.any (other: other == name)
                              then {}
                              else { "${name}" = input.packages.${system}.default; };
-                     in [ (self: super: pkgs.lib.attrsetsconcatMapAttrs overlayInput inputs) ];
+                     in [ (self: super: pkgs.lib.attrsets.concatMapAttrs overlayInput inputs) ];
        };
     };
 }
