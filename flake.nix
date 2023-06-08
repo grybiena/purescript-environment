@@ -16,7 +16,11 @@
       inherit nixpkgs flake-utils ps-tools purs-nix npmlock2nix;
       gen-overlays = {
         __functor = _: { pkgs, system }: overlays:
-          let overlayInput = name: input: { "${name}" = input.packages.${system}.default; };
+        let overlayInput = name: input:
+              if input ? packages
+                then let pkg = input.packages.${system}.default;
+                     in if pkg ? purs-nix-info then { "${name}" = pkg; } else {}
+                else {};
           in [ (self: super: pkgs.lib.attrsets.concatMapAttrs overlayInput overlays) ];
       };
       build-package = {
