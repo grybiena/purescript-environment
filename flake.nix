@@ -49,15 +49,18 @@
                     purs-nix-overlay.purescript
                   ];
               };
-          in { packages.default =
-                 purs-nix-overlay.build
-                   { inherit name; 
-                     src.path = src;
-                     info = package;
-                   };
-               packages.output = ps.output {};
+          in { packages = {
+                 default =
+                   purs-nix-overlay.build
+                     { inherit name; 
+                       src.path = src;
+                       info = package;
+                     };
+                 output = ps.output {};
+
+               } // (if build ? bundle then { bundle = ps.bundle build.bundle; } else {});
                devShells.default = shell; 
-             } // (if build ? bundle then { packages.bundle = ps.bundle build.bundle; } else {});
+             }
       };
     };
 }
