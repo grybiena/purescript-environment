@@ -57,7 +57,7 @@
                    };
                packages.output = ps.output {};
                devShells.default = shell; 
-             } // (if build ? bundle then { packages.bundle = ps.bundle build.bundle; } else {};);
+             } // (if build ? bundle then { packages.bundle = ps.bundle build.bundle; } else {});
       };
     };
 }
