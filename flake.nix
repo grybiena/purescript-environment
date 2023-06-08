@@ -52,6 +52,18 @@
               overlays = [ ];
               config.allowBroken = true;
             };
+            purs-nix-overlay = purs-nix {
+              inherit system; 
+              overlays = with inputs; gen-overlays { inherit pkgs system; } overlays;
+            };
+
+            package = import derive-package (purs-nix-overlay // {
+              npmlock2nix = import npmlock2nix { inherit pkgs; };
+            }); 
+
+            ps = purs-nix-overlay.purs { inherit (package) dependencies; };
+
+
             shell = pkgs.mkShell
               { packages = with pkgs; [
                   nodejs
