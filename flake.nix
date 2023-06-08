@@ -20,7 +20,7 @@
           in [ (self: super: pkgs.lib.attrsets.concatMapAttrs overlayInput overlays) ];
       };
       build-package = {
-        __functor = _: { system, name, src, overlays, derive-package }:
+        __functor = _: { system, name, src, overlays, derive-package, shellHook ? "" }:
           let
             pkgs = import nixpkgs {
               inherit system;
@@ -40,7 +40,8 @@
 
 
             shell = pkgs.mkShell
-              { packages = with pkgs; [
+            { inherit shellHook;
+              packages = with pkgs; [
                   nodejs
                   (ps.command {}) 
                   ps-tools.legacyPackages.${system}.for-0_15.purescript-language-server
