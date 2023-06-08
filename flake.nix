@@ -61,7 +61,7 @@
                   purs-nix-overlay.purescript
                 ];
               };
-          in build-with-pkgs { inherit pkgs system name src overlays derive-package; }; 
+          in build-with-pkgs { inherit pkgs shell system name src overlays derive-package; }; 
       };
     };
 }
