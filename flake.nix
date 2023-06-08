@@ -60,7 +60,7 @@
 
                } // (if build ? bundle then { bundle = ps.bundle build.bundle; } else {});
                devShells.default = shell; 
-             }
+             };
       };
     };
 }
