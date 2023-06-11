@@ -40,7 +40,7 @@
               npmlock2nix = import npmlock2nix { inherit pkgs; };
             }); 
 
-            ps = purs-nix-overlay.purs { inherit (package) dependencies; };
+            ps = purs-nix-overlay.purs package;
 
 
             shell = pkgs.mkShell
