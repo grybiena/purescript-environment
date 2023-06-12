@@ -24,7 +24,7 @@
           in [ (self: super: pkgs.lib.attrsets.concatMapAttrs overlayInput overlays) ];
       };
       build-package = {
-        __functor = _: build@{ system, name, src, overlays, derive-package, shellEnv ? [], shellHook ? "", ... }:
+        __functor = _: build@{ system, name, src, overlays, derive-package, shellEnv ? (_: []), shellHook ? "", ... }:
           let
             pkgs = import nixpkgs {
               inherit system;
@@ -51,7 +51,7 @@
                     ps-tools.legacyPackages.${system}.for-0_15.purescript-language-server
                     purs-nix-overlay.esbuild
                     purs-nix-overlay.purescript
-                  ] ++ shellEnv;
+                  ] ++ shellEnv pkgs;
               };
           in { packages = {
                  default =
