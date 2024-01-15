@@ -24,7 +24,7 @@
           in [ (self: super: pkgs.lib.attrsets.concatMapAttrs overlayInput overlays) ];
       };
       build-package = {
-        __functor = _: build@{ system, name, src, overlays, derive-package, shellHook ? "", ... }:
+        __functor = _: build@{ system, name, src, overlays, derive-package, shellHook ? "", pursuit ? {}, ... }:
           let
             pkgs = import nixpkgs {
               inherit system;
@@ -47,7 +47,11 @@
               { inherit shellHook;
                 packages = with pkgs; [
                     nodejs
-                    (ps.command {}) 
+                    (ps.command {
+                      package {
+                        inherit pursuit;
+                      };
+                    }) 
                     ps-tools.legacyPackages.${system}.for-0_15.purescript-language-server
                     purs-nix-overlay.esbuild
                     purs-nix-overlay.purescript
