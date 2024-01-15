@@ -37,7 +37,7 @@
             };
 
             package = import derive-package (purs-nix-overlay // {
-              inherit pkgs;
+              inherit pkgs name;
               npmlock2nix = import npmlock2nix { inherit pkgs; };
             }); 
 
@@ -49,7 +49,7 @@
                 packages = with pkgs; [
                     nodejs
                     (ps.command {
-                      inherit name package;
+                      inherit package;
                     }) 
                     ps-tools.legacyPackages.${system}.for-0_15.purescript-language-server
                     purs-nix-overlay.esbuild
