@@ -48,7 +48,7 @@
                 packages = with pkgs; [
                     nodejs
                     (ps.command {
-                      package {
+                      package = {
                         inherit pursuit;
                       };
                     }) 
