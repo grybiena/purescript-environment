@@ -37,6 +37,7 @@
             };
 
             package = import derive-package (purs-nix-overlay // {
+              inherit name;
               npmlock2nix = import npmlock2nix { inherit pkgs; };
             }); 
 
