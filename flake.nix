@@ -49,10 +49,7 @@
                 packages = with pkgs; [
                     nodejs
                     (ps.command {
-                      inherit package;
-#                      package = {
-#                        inherit pursuit;
-#                      };
+                      inherit name package;
                     }) 
                     ps-tools.legacyPackages.${system}.for-0_15.purescript-language-server
                     purs-nix-overlay.esbuild
